@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{1d61f777-513f-4368-9f5d-35a95334c53b}">
+		<property name="assetPath">
+			<value>Hit8.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.34126984126984128</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{784ddf0f-61ab-459e-ade4-51b9c953a957}</destination>
+		</relationship>
+	</object>
+</objects>

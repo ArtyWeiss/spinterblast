@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{faf05f46-7523-42df-92d0-71c48acd9699}">
+		<property name="assetPath">
+			<value>Shoot27.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.83390022675736963</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{784ddf0f-61ab-459e-ade4-51b9c953a957}</destination>
+		</relationship>
+	</object>
+</objects>

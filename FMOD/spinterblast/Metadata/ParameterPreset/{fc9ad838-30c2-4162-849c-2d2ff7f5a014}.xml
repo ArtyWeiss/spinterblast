@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{fc9ad838-30c2-4162-849c-2d2ff7f5a014}">
+		<property name="name">
+			<value>Midpass EQ</value>
+		</property>
+		<relationship name="folder">
+			<destination>{a9a247fe-6224-4a45-b2fb-f765449af555}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{cd089ca9-a95e-445b-91f5-03bbbbc37071}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{cd089ca9-a95e-445b-91f5-03bbbbc37071}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

@@ -61,15 +61,14 @@ public class GameModeManager : MonoBehaviour
             case GameState.Title:
                 titleScreen.gameObject.SetActive(true);
                 hudScreen.gameObject.SetActive(false);
-                playerSpawner.gameObject.SetActive(false);
+                // playerSpawner.gameObject.SetActive(false);
                 botSpawner.gameObject.SetActive(false);
-                // TODO: Переделать на события и выключать только контроллеры, физические тела и спавнеры
                 Time.timeScale = 1f;
                 break;
             case GameState.Gameplay:
                 titleScreen.gameObject.SetActive(false);
                 hudScreen.gameObject.SetActive(true);
-                playerSpawner.gameObject.SetActive(true);
+                // playerSpawner.gameObject.SetActive(true);
                 botSpawner.gameObject.SetActive(true);
                 Time.timeScale = 1f;
                 break;

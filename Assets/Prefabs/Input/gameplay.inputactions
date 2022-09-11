@@ -1,8 +1,8 @@
 {
-    "name": "spinterblast_gameplay",
+    "name": "gameplay",
     "maps": [
         {
-            "name": "Player",
+            "name": "Character",
             "id": "337910ba-ca8e-49df-b5ae-29b8eaf9fc7e",
             "actions": [
                 {
@@ -66,6 +66,45 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Stop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Join",
+            "id": "f1696242-ac29-401a-911b-c6181602b3bd",
+            "actions": [
+                {
+                    "name": "Join",
+                    "type": "Button",
+                    "id": "9471c0b0-9002-4468-b42a-316addf86cfc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "aff780d1-18ba-44d5-a8d2-165bf2033998",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Join",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a499de48-c586-4dc4-a371-13a9fa63cc26",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Join",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

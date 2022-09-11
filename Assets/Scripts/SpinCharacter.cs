@@ -1,4 +1,5 @@
 ﻿using System;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,7 +17,9 @@ public class SpinCharacter : MonoBehaviour
     public float angularSpeed;
     [Range(0f, 1f)] public float recoveryMultiplier;
 
-    [Space(20)] [Tooltip("Результат скалярного произведения направления выстрела и текущего направления персонажа, выше которого будет засчитываться блок")]
+    [Space(20)]
+    [Tooltip(
+        "Результат скалярного произведения направления выстрела и текущего направления персонажа, выше которого будет засчитываться блок")]
     public float blockDot;
 
     [Space(20)] public Rigidbody characterBody;
@@ -26,7 +29,7 @@ public class SpinCharacter : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform barrelEnd;
 
-    public FMODUnity.EventReference ShotEvent;
+    public EventReference ShotEvent;
 
     [NonSerialized] public float stamina;
     [NonSerialized] public bool dead;
@@ -43,11 +46,6 @@ public class SpinCharacter : MonoBehaviour
         isFirePressed = context.action.triggered;
     }
 
-    private void Start()
-    {
-        stamina = maxStamina;
-    }
-
     private void Update()
     {
         var currentSpeed = isStopPressed && stamina > 0f ? 0f : angularSpeed;
@@ -61,7 +59,7 @@ public class SpinCharacter : MonoBehaviour
         {
             if (Time.time >= lastShotTime + reloadDuration)
             {
-                FMODUnity.RuntimeManager.PlayOneShot(ShotEvent);
+                RuntimeManager.PlayOneShot(ShotEvent);
                 characterBody.AddForce(-characterTransform.forward * recoilImpulse, ForceMode.Impulse);
                 shotEffect.Play();
                 Instantiate(bulletPrefab, barrelEnd.position, characterTransform.rotation);
@@ -84,5 +82,13 @@ public class SpinCharacter : MonoBehaviour
         {
             dead = true;
         }
+    }
+
+    public void Respawn(Vector3 position, Quaternion rotation)
+    {
+        transform.SetPositionAndRotation(position, rotation);
+        stamina = maxStamina;
+        lastShotTime = Time.time;
+        dead = false;
     }
 }

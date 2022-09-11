@@ -403,7 +403,7 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 11b09c38-a69b-4409-95ea-8529c4782490
     m_ActionName: Player/Stop[/XInputControllerWindows/leftTrigger,/XInputControllerWindows1/leftTrigger,/Mouse/rightButton]
-  m_NeverAutoSwitchControlSchemes: 0
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1

@@ -5,7 +5,7 @@ public class GameModeManager : MonoBehaviour
 {
     public GameState state;
 
-    public PlayerSpawner playerSpawner;
+    public CharacterSpawner characterSpawner;
     public BotSpawner botSpawner;
 
     public RectTransform titleScreen;
@@ -61,14 +61,14 @@ public class GameModeManager : MonoBehaviour
             case GameState.Title:
                 titleScreen.gameObject.SetActive(true);
                 hudScreen.gameObject.SetActive(false);
-                // playerSpawner.gameObject.SetActive(false);
+                characterSpawner.gameObject.SetActive(false);
                 botSpawner.gameObject.SetActive(false);
                 Time.timeScale = 1f;
                 break;
             case GameState.Gameplay:
                 titleScreen.gameObject.SetActive(false);
                 hudScreen.gameObject.SetActive(true);
-                // playerSpawner.gameObject.SetActive(true);
+                characterSpawner.gameObject.SetActive(true);
                 botSpawner.gameObject.SetActive(true);
                 Time.timeScale = 1f;
                 break;

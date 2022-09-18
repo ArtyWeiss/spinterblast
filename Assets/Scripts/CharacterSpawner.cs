@@ -1,49 +1,31 @@
 ﻿using System;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
-public class PlayerSpawner : MonoBehaviour
+public class CharacterSpawner : MonoBehaviour
 {
+    public PlayerManager playerManager;
     public SpinCharacter characterPrefab;
-    [Space(20)] public Action onPlayerDeath;
+    public Action onPlayerDeath;
     public float randomRadius;
     public Transform[] spawnPoints;
 
-    private const int MAX_PLAYERS = 4;
-    private static readonly Player[] players = new Player[MAX_PLAYERS];
-    private static readonly SpinCharacter[] characters = new SpinCharacter[MAX_PLAYERS];
-
+    private static readonly SpinCharacter[] characters = new SpinCharacter[PlayerManager.MAX_PLAYERS];
     private int currentIndex = -1;
-
-    public void OnPlayerJoined(PlayerInput input)
-    {
-        var player = input.gameObject.GetComponent<Player>();
-        players[input.playerIndex] = player;
-        Debug.Log($"Player joined {input.playerIndex}");
-    }
-
-    public void OnPlayerLeft(PlayerInput input)
-    {
-        Destroy(players[input.playerIndex].gameObject);
-        players[input.playerIndex] = null;
-        Debug.Log($"Player left {input.playerIndex}");
-    }
 
     private void Update()
     {
-        // TODO: Перенести логику спавна в отдельный компонент (чтобы можно было отключить ее отдельно от добавления игроков)
-        for (var i = 0; i < MAX_PLAYERS; i++)
+        for (var i = 0; i < PlayerManager.MAX_PLAYERS; i++)
         {
-            if (players[i] != null)
+            if (playerManager.players[i] != null)
             {
                 if (characters[i] == null)
                 {
                     var newCharacter = Instantiate(characterPrefab);
                     newCharacter.Respawn(GetRandomSpawnPosition(), quaternion.identity);
                     characters[i] = newCharacter;
-                    players[i].character = newCharacter;
+                    playerManager.players[i].character = newCharacter;
                 }
                 else if (characters[i].dead)
                 {
@@ -54,7 +36,7 @@ public class PlayerSpawner : MonoBehaviour
             }
             else if (characters[i] != null)
             {
-                players[i].character = null;
+                playerManager.players[i].character = null;
                 Destroy(characters[i].gameObject);
                 characters[i] = null;
             }

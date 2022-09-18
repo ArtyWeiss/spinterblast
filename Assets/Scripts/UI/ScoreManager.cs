@@ -4,7 +4,7 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     public BotSpawner botSpawner;
-    public PlayerSpawner playerSpawner;
+    public PlayerManager playerManager;
     public int maxLives;
     [NonSerialized] public int lives, score;
 
@@ -15,7 +15,8 @@ public class ScoreManager : MonoBehaviour
     private void Awake()
     {
         botSpawner.onBotDeath = IncreaseScore;
-        playerSpawner.onPlayerDeath = DecreaseLives;
+        // TODO: Уменьшение жизней конкретного игрока
+        // playerManager.onPlayerDeath = DecreaseLives;
         lives = maxLives;
     }
 

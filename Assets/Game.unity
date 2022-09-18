@@ -2082,7 +2082,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 5927356119543779207, guid: 75200a1c0c496fe4cadb363e68bf17c9,
       type: 3}
-  m_PlayerPrefab: {fileID: 5319865335512615986, guid: 84ad98ae33c4a0c4d9e8b3a092e1e62f,
+  m_PlayerPrefab: {fileID: 7869425212086690855, guid: 7410ee095d1161a40baf4ace003126cd,
     type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
@@ -2124,6 +2124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec4b9c05748b4b0ab11e6b834f142352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterPrefab: {fileID: 5319865335512615990, guid: 84ad98ae33c4a0c4d9e8b3a092e1e62f,
+    type: 3}
   randomRadius: 0.66
   spawnPoints:
   - {fileID: 698068982}

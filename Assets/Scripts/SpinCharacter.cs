@@ -1,7 +1,6 @@
 ﻿using System;
 using FMODUnity;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class SpinCharacter : MonoBehaviour
 {
@@ -35,16 +34,6 @@ public class SpinCharacter : MonoBehaviour
     [NonSerialized] public bool dead;
 
     private float lastShotTime;
-
-    public void OnStop(InputAction.CallbackContext context)
-    {
-        isStopPressed = context.action.triggered;
-    }
-
-    public void OnFire(InputAction.CallbackContext context)
-    {
-        isFirePressed = context.action.triggered;
-    }
 
     private void Update()
     {

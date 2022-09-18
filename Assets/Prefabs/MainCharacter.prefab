@@ -316,7 +316,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5319865335512615985}
-  - component: {fileID: 239391854051592526}
   - component: {fileID: 5319865335512615984}
   - component: {fileID: 5319865335512615987}
   - component: {fileID: 5319865335512615990}
@@ -345,69 +344,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &239391854051592526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5319865335512615986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 75200a1c0c496fe4cadb363e68bf17c9,
-    type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5319865335512615990}
-        m_TargetAssemblyTypeName: SpinCharacter, Assembly-CSharp
-        m_MethodName: OnFire
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 706f7078-70ba-4675-ac13-941fa732649b
-    m_ActionName: Player/Fire[/XInputControllerWindows/rightTrigger,/XInputControllerWindows1/rightTrigger,/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5319865335512615990}
-        m_TargetAssemblyTypeName: SpinCharacter, Assembly-CSharp
-        m_MethodName: OnStop
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 11b09c38-a69b-4409-95ea-8529c4782490
-    m_ActionName: Player/Stop[/XInputControllerWindows/leftTrigger,/XInputControllerWindows1/leftTrigger,/Mouse/rightButton]
-  m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!136 &5319865335512615984
 CapsuleCollider:
   m_ObjectHideFlags: 0

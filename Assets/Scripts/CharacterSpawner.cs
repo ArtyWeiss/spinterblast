@@ -25,9 +25,9 @@ public class CharacterSpawner : MonoBehaviour
                     var newCharacter = Instantiate(characterPrefab);
                     newCharacter.Respawn(GetRandomSpawnPosition(), quaternion.identity);
                     characters[i] = newCharacter;
-                    playerManager.players[i].character = newCharacter;
+                    playerManager.players[i].AssignCharacter(newCharacter);
                 }
-                else if (characters[i].dead)
+                else if (characters[i].dead && playerManager.players[i].livesCount > 1)
                 {
                     onPlayerDeath?.Invoke();
                     // TODO: Добавить случайный начальный поворот
@@ -36,7 +36,7 @@ public class CharacterSpawner : MonoBehaviour
             }
             else if (characters[i] != null)
             {
-                playerManager.players[i].character = null;
+                playerManager.players[i].ResetCharacter();
                 Destroy(characters[i].gameObject);
                 characters[i] = null;
             }

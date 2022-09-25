@@ -4,9 +4,10 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     public BotSpawner botSpawner;
+
     public PlayerManager playerManager;
-    public int maxLives;
-    [NonSerialized] public int lives, score;
+
+    public PlayerHud[] playersHud;
 
     public FMODUnity.EventReference KillEvent;
     public FMODUnity.EventReference DamageEvent;
@@ -15,25 +16,41 @@ public class ScoreManager : MonoBehaviour
     private void Awake()
     {
         botSpawner.onBotDeath = IncreaseScore;
-        // TODO: Уменьшение жизней конкретного игрока
-        // playerManager.onPlayerDeath = DecreaseLives;
-        lives = maxLives;
     }
 
     private void IncreaseScore()
     {
-        score++;
+        // score++;
         FMODUnity.RuntimeManager.PlayOneShot(KillEvent);
     }
 
-    private void DecreaseLives()
+    private void Start()
     {
-        lives--;
-        FMODUnity.RuntimeManager.PlayOneShot(lives == 0 ? DeathEvent : DamageEvent);
-        if (lives == 0)
+        if (playersHud.Length != PlayerManager.MAX_PLAYERS) return;
+        for (var i = 0; i < PlayerManager.MAX_PLAYERS; i++)
         {
-            lives = maxLives;
-            score = 0;
+            playersHud[i].gameObject.SetActive(false);
+        }
+    }
+
+    private void Update()
+    {
+        if (playersHud.Length != PlayerManager.MAX_PLAYERS) return;
+        for (var i = 0; i < PlayerManager.MAX_PLAYERS; i++)
+        {
+            if (playerManager.players[i] != null)
+            {
+                if (!playersHud[i].isActiveAndEnabled)
+                {
+                    playersHud[i].gameObject.SetActive(true);
+                }
+
+                playersHud[i].UpdateView(playerManager.players[i].livesCount);
+            }
+            else if (playersHud[i].isActiveAndEnabled)
+            {
+                playersHud[i].gameObject.SetActive(false);
+            }
         }
     }
 }

@@ -5,6 +5,7 @@ public class PlayerManager : MonoBehaviour
 {
     public const int MAX_PLAYERS = 4;
     public readonly Player[] players = new Player[MAX_PLAYERS];
+    public Color[] playerColors;
 
     public void OnPlayerJoined(PlayerInput input)
     {

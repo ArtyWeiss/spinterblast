@@ -35,6 +35,8 @@ public class SpinCharacter : MonoBehaviour
 
     private float lastShotTime;
 
+    public Action onDeath;
+
     private void Update()
     {
         var currentSpeed = isStopPressed && stamina > 0f ? 0f : angularSpeed;
@@ -79,5 +81,6 @@ public class SpinCharacter : MonoBehaviour
         stamina = maxStamina;
         lastShotTime = Time.time;
         dead = false;
+        onDeath?.Invoke();
     }
 }

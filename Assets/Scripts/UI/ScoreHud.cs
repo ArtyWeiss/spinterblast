@@ -8,6 +8,6 @@ public class ScoreHud : MonoBehaviour
 
     private void Update()
     {
-        scoreText.text = scoreManager.score.ToString();
+        // scoreText.text = scoreManager.score.ToString();
     }
 }

@@ -1,22 +1,21 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class LivesHud : MonoBehaviour
+public class PlayerHud : MonoBehaviour
 {
-    public ScoreManager scoreManager;
     public RectTransform livesTransform;
     public Image livePrefab;
 
-    private void Update()
+    public void UpdateView(int lives)
     {
-        if (livesTransform.childCount != scoreManager.lives)
+        if (livesTransform.childCount != lives)
         {
             foreach (Transform child in livesTransform.transform)
             {
                 Destroy(child.gameObject);
             }
 
-            for (var i = 0; i < scoreManager.lives; i++)
+            for (var i = 0; i < lives; i++)
             {
                 Instantiate(livePrefab, livesTransform);
             }

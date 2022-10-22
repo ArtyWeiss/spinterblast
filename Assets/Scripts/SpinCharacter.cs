@@ -77,7 +77,8 @@ public class SpinCharacter : MonoBehaviour
 
     public void Respawn(Vector3 position, Quaternion rotation)
     {
-        transform.SetPositionAndRotation(position, rotation);
+        transform.position = position;
+        characterTransform.rotation = rotation;
         stamina = maxStamina;
         lastShotTime = Time.time;
         dead = false;

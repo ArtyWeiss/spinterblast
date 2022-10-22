@@ -1,7 +1,9 @@
 ﻿using System;
 using Unity.Mathematics;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
 using Random = UnityEngine.Random;
+using Vector3 = UnityEngine.Vector3;
 
 public class CharacterSpawner : MonoBehaviour
 {
@@ -27,11 +29,10 @@ public class CharacterSpawner : MonoBehaviour
                     characters[i] = newCharacter;
                     playerManager.players[i].AssignCharacter(newCharacter);
                 }
-                else if (characters[i].dead && playerManager.players[i].livesCount > 1)
+                else if (characters[i].dead && playerManager.players[i].livesCount > 0)
                 {
                     onPlayerDeath?.Invoke();
-                    // TODO: Добавить случайный начальный поворот
-                    characters[i].Respawn(GetRandomSpawnPosition(), quaternion.identity);
+                    characters[i].Respawn(GetRandomSpawnPosition(), GetRandomSpawnRotation());
                 }
             }
             else if (characters[i] != null)
@@ -48,6 +49,11 @@ public class CharacterSpawner : MonoBehaviour
         currentIndex = GetNewRandomIndex();
         var randomOffset = Random.insideUnitCircle * randomRadius;
         return spawnPoints[currentIndex].position + new Vector3(randomOffset.x, 0f, randomOffset.y);
+    }
+
+    private Quaternion GetRandomSpawnRotation()
+    {
+        return Quaternion.AngleAxis(Random.value * 360f, Vector3.up);
     }
 
     private int GetNewRandomIndex()

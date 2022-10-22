@@ -19,14 +19,7 @@ public class PauseManager : MonoBehaviour
 
     private void OnPause()
     {
-        if (gameManager.state == GameModeManager.GameState.Gameplay)
-        {
-            gameManager.SetPauseState();
-        }
-        else
-        {
-            gameManager.SetGamePlayState();
-        }
+        gameManager.TogglePause();
     }
 
     private void OnDisable()

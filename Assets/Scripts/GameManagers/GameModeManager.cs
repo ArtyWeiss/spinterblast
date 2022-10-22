@@ -16,23 +16,39 @@ public class GameModeManager : MonoBehaviour
     public enum GameState
     {
         Title,
-        Gameplay,
+        PvE,
+        PvP,
         Pause
     }
+
+    private GameState prevState;
 
     private void Awake()
     {
         Instance = this;
     }
 
-    public void SetGamePlayState()
+    public void SetPvEState()
     {
-        SetState(GameState.Gameplay);
+        SetState(GameState.PvE);
     }
 
-    public void SetPauseState()
+    public void SetPvPState()
     {
-        SetState(GameState.Pause);
+        SetState(GameState.PvP);
+    }
+
+    public void TogglePause()
+    {
+        if (state == GameState.Pause)
+        {
+            SetState(prevState);
+        }
+        else if (state == GameState.PvE || state == GameState.PvP)
+        {
+            prevState = state;
+            SetState(GameState.Pause);
+        }
     }
 
     public void QuitGame()
@@ -63,10 +79,16 @@ public class GameModeManager : MonoBehaviour
                 botSpawner.gameObject.SetActive(false);
                 Time.timeScale = 0f;
                 break;
-            case GameState.Gameplay:
+            case GameState.PvE:
                 titleScreen.gameObject.SetActive(false);
                 characterSpawner.gameObject.SetActive(true);
                 botSpawner.gameObject.SetActive(true);
+                Time.timeScale = 1f;
+                break;
+            case GameState.PvP:
+                titleScreen.gameObject.SetActive(false);
+                characterSpawner.gameObject.SetActive(true);
+                botSpawner.gameObject.SetActive(false);
                 Time.timeScale = 1f;
                 break;
             case GameState.Pause:

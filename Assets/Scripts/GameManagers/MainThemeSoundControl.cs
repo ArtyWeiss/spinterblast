@@ -16,7 +16,13 @@ public class MainThemeSoundControl : MonoBehaviour
 
     private void Update()
     {
-        equalizer = GameModeManager.Instance.state == GameModeManager.GameState.Gameplay ? 0 : 1;
+        equalizer = IsGameplayState() ? 0 : 1;
         instance.setParameterByName(parameterName, equalizer);
+    }
+
+    private static bool IsGameplayState()
+    {
+        var currentState = GameModeManager.Instance.state;
+        return currentState == GameModeManager.GameState.PvE || currentState == GameModeManager.GameState.PvP;
     }
 }

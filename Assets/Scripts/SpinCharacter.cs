@@ -72,6 +72,7 @@ public class SpinCharacter : MonoBehaviour
         if (other.gameObject.CompareTag("KillTrigger"))
         {
             dead = true;
+            onDeath?.Invoke();
         }
     }
 
@@ -82,6 +83,5 @@ public class SpinCharacter : MonoBehaviour
         stamina = maxStamina;
         lastShotTime = Time.time;
         dead = false;
-        onDeath?.Invoke();
     }
 }

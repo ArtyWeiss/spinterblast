@@ -1,21 +1,18 @@
-﻿using System;
-using Unity.Mathematics;
+﻿using Unity.Mathematics;
 using UnityEngine;
-using Quaternion = UnityEngine.Quaternion;
 using Random = UnityEngine.Random;
-using Vector3 = UnityEngine.Vector3;
 
 public class CharacterSpawner : MonoBehaviour
 {
     public PlayerManager playerManager;
     public SpinCharacter characterPrefab;
-    public Action onPlayerDeath;
     public float randomRadius;
     public Transform[] spawnPoints;
 
     private static readonly SpinCharacter[] characters = new SpinCharacter[PlayerManager.MAX_PLAYERS];
     private int currentIndex = -1;
 
+    // Todo: Отрефакторить. Сложно читать.
     private void Update()
     {
         for (var i = 0; i < PlayerManager.MAX_PLAYERS; i++)
@@ -24,15 +21,26 @@ public class CharacterSpawner : MonoBehaviour
             {
                 if (characters[i] == null)
                 {
-                    var newCharacter = Instantiate(characterPrefab);
-                    newCharacter.Respawn(GetRandomSpawnPosition(), quaternion.identity);
-                    characters[i] = newCharacter;
-                    playerManager.players[i].AssignCharacter(newCharacter);
+                    if (IsPlayerAlive(i))
+                    {
+                        var newCharacter = Instantiate(characterPrefab);
+                        newCharacter.Respawn(GetRandomSpawnPosition(), quaternion.identity);
+                        characters[i] = newCharacter;
+                        playerManager.players[i].AssignCharacter(newCharacter);
+                    }
                 }
-                else if (characters[i].dead && playerManager.players[i].livesCount > 0)
+                else if (characters[i].dead)
                 {
-                    onPlayerDeath?.Invoke();
-                    characters[i].Respawn(GetRandomSpawnPosition(), GetRandomSpawnRotation());
+                    if (IsPlayerAlive(i))
+                    {
+                        characters[i].Respawn(GetRandomSpawnPosition(), GetRandomSpawnRotation());
+                    }
+                    else
+                    {
+                        playerManager.players[i].ResetCharacter();
+                        Destroy(characters[i].gameObject);
+                        characters[i] = null;
+                    }
                 }
             }
             else if (characters[i] != null)
@@ -42,6 +50,11 @@ public class CharacterSpawner : MonoBehaviour
                 characters[i] = null;
             }
         }
+    }
+
+    private bool IsPlayerAlive(int index)
+    {
+        return playerManager.players[index].livesCount > 0;
     }
 
     private Vector3 GetRandomSpawnPosition()
